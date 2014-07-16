@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions name="my_dispatcher" targetNamespace="http://example.com/sample.wsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://example.com/sample.wsdl" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+	
+    
+	<wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"/>
+	
+
+    
+	<wsdl:types>
+		
+       
+		<xsd:schema elementFormDefault="qualified" targetNamespace="http://example.com/sample.wsdl" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+			
+       
+			<xsd:element name="uploadImages">
+				<xsd:complexType>
+					<xsd:all>
+						<xsd:element name="imgs_str" type="xsd:string"/>
+					</xsd:all>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="uploadImagesResponse">
+				<xsd:complexType>
+					<xsd:all>
+						<xsd:element name="Result" type="xsd:int"/>
+					</xsd:all>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="uploadConfigAndImages">
+				<xsd:complexType>
+					<xsd:all>
+						<xsd:element name="contests_def_list_str" type="xsd:string"/>
+						<xsd:element name="imgs_str" type="xsd:string"/>
+					</xsd:all>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="uploadConfigAndImagesResponse">
+				<xsd:complexType>
+					<xsd:all>
+						<xsd:element name="Result" type="xsd:int"/>
+					</xsd:all>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="uploadImage">
+				<xsd:complexType>
+					<xsd:all>
+						<xsd:element name="imgstr" type="xsd:string"/>
+						<xsd:element name="name" type="xsd:string"/>
+					</xsd:all>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="uploadImageResponse">
+				<xsd:complexType>
+					<xsd:all>
+						<xsd:element name="Result" type="xsd:int"/>
+					</xsd:all>
+				</xsd:complexType>
+			</xsd:element>
+		</xsd:schema>
+		
+    
+	</wsdl:types>
+	
+
+
+	<wsdl:message name="uploadImagesInput">
+		<wsdl:part element="tns:uploadImages" name="parameters"/>
+	</wsdl:message>
+	<wsdl:message name="uploadImagesOutput">
+		<wsdl:part element="tns:uploadImagesResponse" name="parameters"/>
+	</wsdl:message>
+	<wsdl:message name="uploadConfigAndImagesInput">
+		<wsdl:part element="tns:uploadConfigAndImages" name="parameters"/>
+	</wsdl:message>
+	<wsdl:message name="uploadConfigAndImagesOutput">
+		<wsdl:part element="tns:uploadConfigAndImagesResponse" name="parameters"/>
+	</wsdl:message>
+	<wsdl:message name="uploadImageInput">
+		<wsdl:part element="tns:uploadImage" name="parameters"/>
+	</wsdl:message>
+	<wsdl:message name="uploadImageOutput">
+		<wsdl:part element="tns:uploadImageResponse" name="parameters"/>
+	</wsdl:message>
+	<wsdl:portType name="my_dispatcherPortType">
+		<wsdl:operation name="uploadImages">
+			<wsdl:input message="tns:uploadImagesInput"/>
+			<wsdl:output message="tns:uploadImagesOutput"/>
+		</wsdl:operation>
+		<wsdl:operation name="uploadConfigAndImages">
+			<wsdl:input message="tns:uploadConfigAndImagesInput"/>
+			<wsdl:output message="tns:uploadConfigAndImagesOutput"/>
+		</wsdl:operation>
+		<wsdl:operation name="uploadImage">
+			<wsdl:input message="tns:uploadImageInput"/>
+			<wsdl:output message="tns:uploadImageOutput"/>
+		</wsdl:operation>
+	</wsdl:portType>
+	<wsdl:binding name="my_dispatcherBinding" type="tns:my_dispatcherPortType">
+		<soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+		<wsdl:operation name="uploadImages">
+			<soap:operation soapAction="http://localhost:8008/uploadImages" style="document"/>
+			<wsdl:input>
+				<soap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="uploadConfigAndImages">
+			<soap:operation soapAction="http://localhost:8008/uploadConfigAndImages" style="document"/>
+			<wsdl:input>
+				<soap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="uploadImage">
+			<soap:operation soapAction="http://localhost:8008/uploadImage" style="document"/>
+			<wsdl:input>
+				<soap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+	</wsdl:binding>
+	<wsdl:service name="my_dispatcherService">
+		<wsdl:documentation></wsdl:documentation>
+		<wsdl:port binding="tns:my_dispatcherBinding" name="my_dispatcher">
+			<soap:address location="http://localhost:8008/"/>
+		</wsdl:port>
+	</wsdl:service>
+</wsdl:definitions>

@@ -1,0 +1,5 @@
+<ContentDataList>
+	<ContentData name="sample1" interval="60">
+		<URL><![CDATA[http://www.google.com]]></URL>
+	</ContentData>
+</ContentDataList>
